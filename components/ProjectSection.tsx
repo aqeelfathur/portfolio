@@ -14,33 +14,33 @@ const projects = [
     github: "https://github.com/aqeelfathur/fittrack-fix",
     demo: "#"
   },
-  {
-    id: 2,
-    title: "AI Chat Application",
-    description: "Real-time chat application powered by AI with natural language processing and smart responses.",
-    image: "bg-gradient-to-br from-purple-500 to-pink-600",
-    tags: ["React", "OpenAI", "WebSocket"],
-    github: "#",
-    demo: "#"
-  },
-  {
-    id: 3,
-    title: "Task Management System",
-    description: "Collaborative project management tool with drag-and-drop interface, team collaboration features.",
-    image: "bg-gradient-to-br from-green-500 to-teal-600",
-    tags: ["Vue.js", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#"
-  },
-  {
-    id: 4,
-    title: "Portfolio Website Builder",
-    description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
-    image: "bg-gradient-to-br from-orange-500 to-red-600",
-    tags: ["React", "Firebase", "Tailwind"],
-    github: "#",
-    demo: "#"
-  }
+  // {
+  //   id: 2,
+  //   title: "AI Chat Application",
+  //   description: "Real-time chat application powered by AI with natural language processing and smart responses.",
+  //   image: "bg-gradient-to-br from-purple-500 to-pink-600",
+  //   tags: ["React", "OpenAI", "WebSocket"],
+  //   github: "#",
+  //   demo: "#"
+  // },
+  // {
+  //   id: 3,
+  //   title: "Task Management System",
+  //   description: "Collaborative project management tool with drag-and-drop interface, team collaboration features.",
+  //   image: "bg-gradient-to-br from-green-500 to-teal-600",
+  //   tags: ["Vue.js", "Node.js", "MongoDB"],
+  //   github: "#",
+  //   demo: "#"
+  // },
+  // {
+  //   id: 4,
+  //   title: "Portfolio Website Builder",
+  //   description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
+  //   image: "bg-gradient-to-br from-orange-500 to-red-600",
+  //   tags: ["React", "Firebase", "Tailwind"],
+  //   github: "#",
+  //   demo: "#"
+  // }
 ];
 
 export default function ProjectSection() {
