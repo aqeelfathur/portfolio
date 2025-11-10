@@ -43,7 +43,7 @@ export default function Hero() {
             {/* Person Placeholder */}
             <div className="relative z-10 w-72 h-72 bg-gradient-to-br from-purple-400/40 to-blue-400/40 rounded-full flex items-center justify-center backdrop-blur-sm overflow-hidden">
               <Image
-                src="/fotoaqeel.jpg" 
+                src="/fotoaqeel.png" 
                 alt="Creative Designer"
                 width={288} 
                 height={288} 
