@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Enver - Build Your Awesome Platform',
-  description: 'Digital studio offering UI/UX Design and development services',
+  title: 'Aqeel Portfolio',
+  description: '',
 };
 
 export default function RootLayout({
