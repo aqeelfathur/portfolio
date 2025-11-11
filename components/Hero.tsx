@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute top-1/3 right-1/4 text-blue-400 opacity-10 text-6xl">+</div>
       
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 gap-y-35 items-center">
           {/* Left Content */}
           <div className="space-y-6 z-10">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
