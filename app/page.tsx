@@ -8,8 +8,8 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-black">
       <Navbar />
       <Hero />
-      <AboutSection />
       <ProjectSection />
+      <AboutSection />
     </div>
   );
 }
