@@ -8,7 +8,7 @@ const projects = [
   {
     id: 1,
     title: "FitTrack",
-    description: "Full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
+    description: "Full-stack fitness tracking web app with user management and workout analytics.",
     image: "/fittrack.png",
     tags: ["Blade", "CSS", "PHP"],
     github: "https://github.com/aqeelfathur/fittrack-fix",
