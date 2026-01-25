@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen pt-50 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen pt-80 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-40 left-10 w-8 h-8 border-2 border-purple-400 opacity-30 animate-pulse"></div>
       <div className="absolute top-60 left-40 text-purple-400 opacity-20 text-4xl">+</div>
@@ -29,9 +29,6 @@ export default function Hero() {
             <p className="text-gray-300 text-lg sm:text-xl max-w-lg leading-relaxed">
               Full-Stack & Data Enthusiast | Passionate about Project Management & Digital Solutions | Information Systems Student at Universitas Airlangga
             </p>
-            <button className="group px-8 py-4 shadow-lg bg-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300">
-              my services
-            </button>
           </div>
 
           {/* Right Content - Illustration */}
