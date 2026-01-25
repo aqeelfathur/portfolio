@@ -4,19 +4,19 @@ export async function POST(request) {
   try {
     const { name, email, subject, message } = await request.json();
 
-    // Konfigurasi transporter (contoh pakai Gmail)
+    
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // email kamu
-        pass: process.env.EMAIL_PASSWORD // App Password Gmail
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASSWORD 
       }
     });
 
-    // Email untuk kamu (menerima pesan dari visitor)
+    
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: 'aqeelfathurrahman@gmail.com', // email kamu
+      to: 'aqeelfathurrahman@gmail.com', 
       subject: `Portfolio Contact: ${subject}`,
       html: `
         <h2>New Message from Portfolio</h2>

@@ -2,8 +2,25 @@
 
 import React, { useState } from 'react';
 
-export default function Navbar() {
+type NavbarProps = {
+  onHeroClick: () => void;
+  onProjectClick: () => void;
+  onAboutClick: () => void;
+  onConnectClick: () => void;
+};
+
+export default function Navbar({
+  onHeroClick,
+  onProjectClick,
+  onAboutClick,
+  onConnectClick
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = (action: () => void) => {
+    action();
+    setIsOpen(false); // close mobile menu
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-5 z-50 py-3 bg-gradient-to-b from-purple-900/50 to-transparent backdrop-blur-sm">
@@ -16,20 +33,31 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-white hover:text-blue-400 transition-colors font-medium">
+            <button
+              onClick={onHeroClick}
+              className="text-white hover:text-blue-400 transition-colors font-medium"
+            >
               home
-            </a>
-            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
-              services
-            </a>
-            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
+            </button>
+
+            <button
+              onClick={onProjectClick}
+              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+            >
               my project
-            </a>
-            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
+            </button>
+
+            <button
+              onClick={onAboutClick}
+              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
+            >
               about me
-            </a>
-            <button className="px-6 py-2.5 bg-transparent border-2 border-white text-white rounded-xl hover:bg-white hover:text-purple-900 transition-all duration-300 font-semibold">
-              contact me
+            </button>
+
+            <button
+              onClick={onConnectClick} 
+              className="px-6 py-2.5 bg-transparent border-2 border-white text-white rounded-xl hover:bg-white hover:text-purple-900 transition-all duration-300 font-semibold">
+              let's connect!
             </button>
           </div>
 
@@ -54,20 +82,29 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden pb-4">
             <div className="flex flex-col space-y-4">
-              <a href="#" className="text-white hover:text-blue-400 transition-colors font-medium">
-                Home
-              </a>
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
-                Services
-              </a>
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
-                Our Project
-              </a>
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors font-medium">
-                About us
-              </a>
+              <button
+                onClick={() => handleClick(onHeroClick)}
+                className="text-white hover:text-blue-400 transition-colors font-medium text-left"
+              >
+                home
+              </button>
+
+              <button
+                onClick={() => handleClick(onProjectClick)}
+                className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-left"
+              >
+                my project
+              </button>
+
+              <button
+                onClick={() => handleClick(onAboutClick)}
+                className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-left"
+              >
+                about me
+              </button>
+
               <button className="px-6 py-2.5 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-purple-900 transition-all duration-300 font-semibold w-full">
-                Contact us
+                let's connect!
               </button>
             </div>
           </div>
