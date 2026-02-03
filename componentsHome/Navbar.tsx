@@ -35,7 +35,7 @@ export default function Navbar({
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={onHeroClick}
-              className="text-white hover:text-blue-400 transition-colors font-medium"
+              className="text-gray-300 hover:text-blue-400 transition-colors font-medium"
             >
               home
             </button>

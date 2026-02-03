@@ -9,7 +9,7 @@ const projects = [
     id: 1,
     title: "FitTrack",
     description: "Full-stack fitness tracking web app with user management and workout analytics.",
-    image: "/fittrack.png",
+    image: "/fittrack_logo.png",
     tags: ["Blade", "CSS", "PHP"],
     github: "https://github.com/aqeelfathur/fittrack-fix",
   },
@@ -17,36 +17,9 @@ const projects = [
     id: 2,
     title: "PresenSee",
     description: "Real time dashboard for school absence with face recognition",
-    image: "/presensee.png",
+    image: "/presensee_logo.png",
     tags: ["Laravel", "Python"],
     github: "https://github.com/aqeelfathur/PresenSee",
-  },
-  {
-    id: 3,
-    title: "Task Management System",
-    description: "Collaborative project management tool with drag-and-drop interface, team collaboration features.",
-    image: "bg-gradient-to-br from-green-500 to-teal-600",
-    tags: ["Vue.js", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#"
-  },
-  {
-    id: 4,
-    title: "Portfolio Website Builder",
-    description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
-    image: "bg-gradient-to-br from-orange-500 to-red-600",
-    tags: ["React", "Firebase", "Tailwind"],
-    github: "#",
-    demo: "#"
-  },
-  {
-    id: 5,
-    title: "Portfolio Website Builder",
-    description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
-    image: "bg-gradient-to-br from-orange-500 to-red-600",
-    tags: ["React", "Firebase", "Tailwind"],
-    github: "#",
-    demo: "#"
   }
 ];
 
@@ -69,7 +42,7 @@ export default function ProjectSection() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20"
+              className="group relative bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-purple-800 hover:shadow-2xl"
             >
               {/* Project Image/Placeholder */}
               <div className={`h-48 ${project.image} relative overflow-hidden`}>
@@ -83,7 +56,7 @@ export default function ProjectSection() {
                 ) : (
                   <div className={`${project.image} w-full h-full transition-transform duration-500 group-hover:scale-105`} />
                 )}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-all duration-300"></div>
                 <div className="absolute top-4 right-4 flex gap-2">
                   <a
                     href={project.github}
@@ -97,7 +70,7 @@ export default function ProjectSection() {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-purple-500 transition-all duration-300">
                   {project.title}
                 </h3>
                 <p className="text-gray-400 mb-4 leading-relaxed">
