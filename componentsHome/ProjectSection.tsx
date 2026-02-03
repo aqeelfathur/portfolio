@@ -12,35 +12,42 @@ const projects = [
     image: "/fittrack.png",
     tags: ["Blade", "CSS", "PHP"],
     github: "https://github.com/aqeelfathur/fittrack-fix",
+  },
+  {
+    id: 2,
+    title: "PresenSee",
+    description: "Real time dashboard for school absence with face recognition",
+    image: "/presensee.png",
+    tags: ["Laravel", "Python"],
+    github: "https://github.com/aqeelfathur/PresenSee",
+  },
+  {
+    id: 3,
+    title: "Task Management System",
+    description: "Collaborative project management tool with drag-and-drop interface, team collaboration features.",
+    image: "bg-gradient-to-br from-green-500 to-teal-600",
+    tags: ["Vue.js", "Node.js", "MongoDB"],
+    github: "#",
     demo: "#"
   },
-  // {
-  //   id: 2,
-  //   title: "AI Chat Application",
-  //   description: "Real-time chat application powered by AI with natural language processing and smart responses.",
-  //   image: "bg-gradient-to-br from-purple-500 to-pink-600",
-  //   tags: ["React", "OpenAI", "WebSocket"],
-  //   github: "#",
-  //   demo: "#"
-  // },
-  // {
-  //   id: 3,
-  //   title: "Task Management System",
-  //   description: "Collaborative project management tool with drag-and-drop interface, team collaboration features.",
-  //   image: "bg-gradient-to-br from-green-500 to-teal-600",
-  //   tags: ["Vue.js", "Node.js", "MongoDB"],
-  //   github: "#",
-  //   demo: "#"
-  // },
-  // {
-  //   id: 4,
-  //   title: "Portfolio Website Builder",
-  //   description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
-  //   image: "bg-gradient-to-br from-orange-500 to-red-600",
-  //   tags: ["React", "Firebase", "Tailwind"],
-  //   github: "#",
-  //   demo: "#"
-  // }
+  {
+    id: 4,
+    title: "Portfolio Website Builder",
+    description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
+    image: "bg-gradient-to-br from-orange-500 to-red-600",
+    tags: ["React", "Firebase", "Tailwind"],
+    github: "#",
+    demo: "#"
+  },
+  {
+    id: 5,
+    title: "Portfolio Website Builder",
+    description: "No-code portfolio builder with customizable templates, drag-and-drop editor, and hosting included.",
+    image: "bg-gradient-to-br from-orange-500 to-red-600",
+    tags: ["React", "Firebase", "Tailwind"],
+    github: "#",
+    demo: "#"
+  }
 ];
 
 export default function ProjectSection() {
@@ -84,13 +91,6 @@ export default function ProjectSection() {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Github className="w-5 h-5 text-white" />
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalLink className="w-5 h-5 text-white" />
                   </a>
                 </div>
               </div>

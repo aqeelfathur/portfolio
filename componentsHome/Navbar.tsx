@@ -84,7 +84,7 @@ export default function Navbar({
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => handleClick(onHeroClick)}
-                className="text-white hover:text-blue-400 transition-colors font-medium text-left"
+                className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-left"
               >
                 home
               </button>
