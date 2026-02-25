@@ -10,7 +10,7 @@ const projects = [
     title: "FitTrack",
     description: "Full-stack fitness tracking web app with user management and workout analytics.",
     image: "/fittrack_logo.png",
-    tags: ["Blade", "CSS", "PHP"],
+    tags: ["Laravel", "PHP"],
     github: "https://github.com/aqeelfathur/fittrack-fix",
   },
   {
@@ -18,7 +18,7 @@ const projects = [
     title: "PresenSee",
     description: "Real time dashboard for school absence with face recognition",
     image: "/presensee_logo.png",
-    tags: ["Laravel", "Python"],
+    tags: ["Laravel", "PHP", "Python"],
     github: "https://github.com/aqeelfathur/PresenSee",
   }
 ];
@@ -30,10 +30,10 @@ export default function ProjectSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            my latest projects
+            my projects
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            showcase of my recent work in web development, featuring modern technologies and innovative solutions
+            showcase some of my work
           </p>
         </div>
 
