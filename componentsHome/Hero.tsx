@@ -126,7 +126,7 @@ export default function Hero() {
           {/* ── LEFT: TEXT with scale-up + fade on scroll ── */}
           <motion.div
             style={{ scale: textScale, opacity: textOpacity, y: textY }}
-            className="origin-left"
+            className="origin-left pl-4 sm:pl-6 lg:pl-8"
           >
             <motion.div
               variants={container}
@@ -139,7 +139,7 @@ export default function Hero() {
                 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight"
               >
                 Ananda{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                <span className="text-transparent bg-clip-text bg-purple-400">
                   Aqeel
                 </span>
                 <br />
@@ -214,24 +214,6 @@ export default function Hero() {
               className="absolute bottom-10 left-10 w-6 h-6 border-2 border-purple-400 transform rotate-45 opacity-50"
             />
 
-            {/* Badge floating – parallax berlawanan arah */}
-            <motion.div
-              style={{ y: badge1Y }}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-20 z-20 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2 text-sm text-white/80"
-            >
-              Full-Stack Dev
-            </motion.div>
-
-            <motion.div
-              style={{ y: badge2Y }}
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -right-4 bottom-20 z-20 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2 text-sm text-white/80"
-            >
-              Open to Internship!
-            </motion.div>
           </div>
         </div>
       </div>
