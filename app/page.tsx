@@ -1,65 +1,100 @@
 "use client";
 
 import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Navbar from "@/componentsHome/Navbar";
 import Hero from "@/componentsHome/Hero";
 import AboutSection from "@/componentsHome/AboutSection";
 import ProjectSection from "@/componentsHome/ProjectSection";
 
+/**
+ * Wrapper section with slide-up animation when entering viewport
+ */
+function SlideUpSection({
+  children,
+  sectionRef,
+}: {
+  children: React.ReactNode;
+  sectionRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const inViewRef = useRef<HTMLDivElement | null>(null);
+
+  const isInView = useInView(inViewRef, {
+    once: true,
+    margin: "-10% 0px",
+  });
+
+  return (
+    <div ref={sectionRef} style={{ scrollSnapAlign: "start" }}>
+      <div ref={inViewRef}>
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {children}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const projectRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const connectRef = useRef<HTMLDivElement>(null);
-  
+  /**
+   * MAIN SCROLL CONTAINER
+   */
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  /**
+   * SECTION REFS
+   */
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const projectRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const connectRef = useRef<HTMLDivElement | null>(null);
+
+  /**
+   * Smooth scroll helper
+   */
   const smoothScrollTo = (target: HTMLElement) => {
-    const startPosition = window.scrollY;
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 96;
-    const distance = targetPosition - startPosition;
-    const duration = 900;
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (!start) start = currentTime;
-      const elapsed = currentTime - start;
-      const progress = Math.min(elapsed / duration, 1);
-
-      window.scrollTo(
-        0,
-        startPosition + distance * easeInOutCubic(progress)
-      );
-
-      if (elapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-black">
+    <div
+      ref={scrollContainerRef}
+      className="h-screen overflow-y-scroll bg-gradient-to-br from-purple-950 via-purple-900 to-black"
+      style={{
+        scrollSnapType: "y proximity",
+        scrollBehavior: "smooth",
+      }}
+    >
+      {/* NAVBAR */}
       <Navbar
+        scrollContainerRef={scrollContainerRef}
         onHeroClick={() => heroRef.current && smoothScrollTo(heroRef.current)}
         onProjectClick={() => projectRef.current && smoothScrollTo(projectRef.current)}
         onAboutClick={() => aboutRef.current && smoothScrollTo(aboutRef.current)}
         onConnectClick={() => connectRef.current && smoothScrollTo(connectRef.current)}
       />
 
-      <div ref={heroRef} className="scroll-mt-28">
+      {/* HERO (no animation wrapper) */}
+      <div ref={heroRef} style={{ scrollSnapAlign: "start" }}>
         <Hero />
       </div>
 
-      <div ref={projectRef} className="scroll-mt-28">
+      {/* PROJECT */}
+      <SlideUpSection sectionRef={projectRef}>
         <ProjectSection />
-      </div>
+      </SlideUpSection>
 
-      <div ref={aboutRef} className="scroll-mt-28">
+      {/* ABOUT */}
+      <SlideUpSection sectionRef={aboutRef}>
         <AboutSection connectRef={connectRef} />
-      </div>
+      </SlideUpSection>
     </div>
   );
 }
