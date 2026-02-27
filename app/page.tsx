@@ -7,9 +7,6 @@ import Hero from "@/componentsHome/Hero";
 import AboutSection from "@/componentsHome/AboutSection";
 import ProjectSection from "@/componentsHome/ProjectSection";
 
-/**
- * Wrapper section with slide-up animation when entering viewport
- */
 function SlideUpSection({
   children,
   sectionRef,
@@ -18,11 +15,7 @@ function SlideUpSection({
   sectionRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const inViewRef = useRef<HTMLDivElement | null>(null);
-
-  const isInView = useInView(inViewRef, {
-    once: true,
-    margin: "-10% 0px",
-  });
+  const isInView = useInView(inViewRef, { once: true, margin: "-10% 0px" });
 
   return (
     <div ref={sectionRef} style={{ scrollSnapAlign: "start" }}>
@@ -40,27 +33,14 @@ function SlideUpSection({
 }
 
 export default function Home() {
-  /**
-   * MAIN SCROLL CONTAINER
-   */
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-
-  /**
-   * SECTION REFS
-   */
   const heroRef = useRef<HTMLDivElement | null>(null);
   const projectRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const connectRef = useRef<HTMLDivElement | null>(null);
 
-  /**
-   * Smooth scroll helper
-   */
   const smoothScrollTo = (target: HTMLElement) => {
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -72,7 +52,6 @@ export default function Home() {
         scrollBehavior: "smooth",
       }}
     >
-      {/* NAVBAR */}
       <Navbar
         scrollContainerRef={scrollContainerRef}
         onHeroClick={() => heroRef.current && smoothScrollTo(heroRef.current)}
@@ -81,17 +60,15 @@ export default function Home() {
         onConnectClick={() => connectRef.current && smoothScrollTo(connectRef.current)}
       />
 
-      {/* HERO (no animation wrapper) */}
+      {/* HERO — pass scrollContainerRef agar parallax sync */}
       <div ref={heroRef} style={{ scrollSnapAlign: "start" }}>
-        <Hero />
+        <Hero scrollContainerRef={scrollContainerRef} />
       </div>
 
-      {/* PROJECT */}
       <SlideUpSection sectionRef={projectRef}>
         <ProjectSection />
       </SlideUpSection>
 
-      {/* ABOUT */}
       <SlideUpSection sectionRef={aboutRef}>
         <AboutSection connectRef={connectRef} />
       </SlideUpSection>
