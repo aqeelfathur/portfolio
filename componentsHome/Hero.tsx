@@ -69,7 +69,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen pt-60 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen pt-40 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
       style={{ scrollSnapAlign: "start" }}
     >
       {/* ── BACKGROUND AMBIENT ORBS ── */}
