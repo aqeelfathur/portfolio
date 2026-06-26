@@ -1,72 +1,89 @@
 "use client";
 
-import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { profile } from "./portfolioData";
 
-type NavbarProps = {
-  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
-  onHeroClick: () => void;
-  onProjectClick: () => void;
-  onAboutClick: () => void;
-  onConnectClick: () => void;
-};
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Capabilities", href: "#capabilities" },
+  { label: "Contact", href: "#contact" },
+];
 
-export default function Navbar({
-  scrollContainerRef,
-  onHeroClick,
-  onProjectClick,
-  onAboutClick,
-  onConnectClick,
-}: NavbarProps) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (action: () => void) => {
-    action();
-    setIsOpen(false);
-  };
-
   return (
-    <nav className="fixed top-0 left-0 right-5 z-50 py-0.5 bg-gradient-to-b from-purple-900/50 to-transparent backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <h1 className="text-3xl font-semibold text-white">aqeel's portfolio</h1>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#12051d]/80 backdrop-blur-xl">
+      <nav
+        className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        aria-label="Primary navigation"
+      >
+        <a
+          href="#top"
+          className="group inline-flex flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300"
+          onClick={() => setIsOpen(false)}
+        >
+          <span className="text-sm font-semibold uppercase tracking-[0.24em] text-purple-200">
+            {profile.shortName}
+          </span>
+          <span className="text-xs text-slate-400">Builder dashboard</span>
+        </a>
 
-          {/* Desktop */}
-          <div className="hidden md:flex items-center space-x-8">
-            <button onClick={onHeroClick} className="text-gray-300 hover:text-white">
-              home
-            </button>
-
-            <button onClick={onProjectClick} className="text-gray-300 hover:text-white">
-              my project
-            </button>
-
-            <button onClick={onAboutClick} className="text-gray-300 hover:text-white">
-              about me
-            </button>
-
-            <button
-              onClick={onConnectClick}
-              className="px-6 py-2.5 border-2 border-white text-white rounded-xl hover:bg-white hover:text-purple-900"
+        <div className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
             >
-              let's connect!
-            </button>
-          </div>
-
-          {/* Mobile */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
-            menu
-          </button>
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={`mailto:${profile.email}`}
+            className="ml-3 rounded-md border border-blue-300/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-100 transition hover:border-blue-200 hover:bg-blue-300/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+          >
+            Email Aqeel
+          </a>
         </div>
 
-        {isOpen && (
-          <div className="md:hidden flex flex-col space-y-3 mt-4">
-            <button onClick={() => handleClick(onHeroClick)}>home</button>
-            <button onClick={() => handleClick(onProjectClick)}>project</button>
-            <button onClick={() => handleClick(onAboutClick)}>about</button>
+        <button
+          type="button"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300 md:hidden"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {isOpen && (
+        <div className="border-t border-white/10 bg-[#12051d]/95 px-4 py-4 md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-md px-3 py-3 text-base font-medium text-slate-200 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-2 rounded-md border border-blue-300/40 bg-blue-400/10 px-3 py-3 text-base font-semibold text-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Email Aqeel
+            </a>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </header>
   );
 }

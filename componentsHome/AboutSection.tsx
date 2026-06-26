@@ -1,169 +1,172 @@
-'use client';
+import {
+  credentials,
+  experiences,
+  skillGroups,
+} from "./portfolioData";
 
-import React, { useState, forwardRef } from 'react';
-import { Code, Users, Target, Sparkles } from 'lucide-react';
-import ConnectSection from './ConnectSection';
-import EmailPopup from './EmailPopup';
+type AboutSectionProps = {
+  variant: "about" | "experience" | "capabilities";
+};
 
-const skills = [
-  {
-    category: "Technical Skills",
-    icon: Code,
-    items: ["Full-Stack Development (Laravel, HTML, CSS, JS)", "Data Analysis & Visualization (Python, Tableau)", "Project Management (Jira, Notion, Agile Framework)"]
-  },
-  {
-    category: "Soft Skills",
-    icon: Users,
-    items: ["Team Leadership", "Sprint Planning", "Communication", "Problem-Solving"]
-  }
-];
-
-const experiences = [
-  {
-    title: "Project Manager",
-    project: "Emosense",
-    description: "Leading emotion-based learning insights platform, managing sprint goals and cross-functional teams",
-    icon: Target
-  },
-  {
-    title: "Event Coordinator",
-    project: "HIMSI Community Service 2025",
-    description: "Successfully managed multi-division teams with over 90% participant satisfaction",
-    icon: Users
-  },
-  {
-    title: "Garuda Coordinator",
-    project: "AMERTA 2025",
-    description: "Guided 17 mentors and ensured smooth onboarding for 340 new students",
-    icon: Sparkles
-  }
-];
-
-interface AboutSectionProps {
-  connectRef: React.RefObject<HTMLDivElement | null>;
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="mb-10 max-w-3xl sm:mb-14">
+      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-blue-300">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">{title}</h2>
+      <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">{description}</p>
+    </div>
+  );
 }
 
-const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(
-  ({ connectRef }, ref) => {
-    const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
-
+function AboutStory() {
   return (
-    <>
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
-        {/* Decorative Elements */}
-        <div className="absolute top-20 right-10 w-20 h-20 border-2 border-purple-400/20 rounded-full"></div>
-        <div className="absolute bottom-40 left-10 w-16 h-16 border-2 border-blue-400/20 transform rotate-45"></div>
-
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              about me
-            </h2>
-            <div className="w-60 h-1 bg-purple-600 mx-auto rounded-full"></div>
-          </div>
-
-          {/* Opening Statement */}
-          <div className="mb-16 space-y-6">
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20">
-              <p className="text-white text-lg leading-relaxed mb-4">
-                Hi! I'm Aqeel, an Information Systems student and tech enthusiast passionate about project management and data-driven development. I enjoy leading teams, solving problems, and turning ideas into impactful digital products.
-              </p>
-              <p className="text-white text-lg leading-relaxed">
-                I have experience managing agile projects, building full-stack web apps with Laravel, and visualizing insights with Tableau. My goal is to bridge the gap between business needs and technical execution.
-              </p>
-            </div>
-          </div>
-
-          {/* Skills Section */}
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-              what i do
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="text-xl font-bold text-white">{skill.category}</h4>
-                  </div>
-                  <ul className="space-y-2">
-                    {skill.items.map((item, idx) => (
-                      <li key={idx} className="text-white flex items-start gap-2">
-                        <span className="text-purple-400 mt-1">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Experience Highlights */}
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-white mb-8">my journey</h3>
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20 mb-8">
-              <p className="text-white text-lg leading-relaxed">
-                Over the past few years, I've led various student organization projects, including serving as Project Manager for <span className="text-purple-400 font-semibold">Emosense</span> and Event Coordinator for <span className="text-purple-400 font-semibold">HIMSI Community Service 2025</span>, where I successfully managed multi-division teams and achieved over 90% participant satisfaction. I also served as Garuda Coordinator in <span className="text-purple-400 font-semibold">AMERTA 2025</span>, guiding 17 mentors and ensuring smooth onboarding for 340 new students.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {experiences.map((exp, index) => (
-                <div 
-                  key={index}
-                  className="group bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-1"
-                >
-                  <h4 className="text-lg font-bold text-white mb-1">{exp.title}</h4>
-                  <p className="text-purple-400 text-sm font-semibold mb-3">{exp.project}</p>
-                  <p className="text-white text-sm leading-relaxed">{exp.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Current Focus */}
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-white mb-6">current focus</h3>
-            <div className="bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-purple-800 rounded-lg p-6">
-              <p className="text-white leading-relaxed mb-4">
-                Currently, I'm working on <span className="text-purple-400 font-semibold">Emosense</span>, a project focused on emotion-based learning insights, where I serve as Project Manager ensuring sprint goals are met effectively.
-              </p>
-              <p className="text-white leading-relaxed">
-                I'm also exploring <span className="text-blue-400 font-semibold">data-driven project management</span> and how data can improve team efficiency and decision-making.
-              </p>
-            </div>
-          </div>
-
-          {/* Personal Touch */}
-          <div className="mb-12">
-            <div className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20">
-              <p className="text-white text-lg leading-relaxed text-center">
-                Outside of tech, I enjoy learning about <span className="text-purple-400">business strategy</span>, <span className="text-blue-400">UI/UX design</span>, and exploring productivity tools. I'm passionate about continuous learning and collaborating with people who share the same drive for innovation.
-              </p>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <ConnectSection
-            ref={connectRef}
-            onEmailClick={() => setIsEmailPopupOpen(true)}
-          />
-        </div>
-      </section>
-
-      {/* Email Popup */}
-      <EmailPopup 
-        isOpen={isEmailPopupOpen} 
-        onClose={() => setIsEmailPopupOpen(false)} 
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="About"
+        title="A builder who stays close to both the product and the process."
+        description="Aqeel works best where software needs structure: user flows, data models, API touchpoints, sprint targets, and team coordination."
       />
-    </>
+
+      <div className="grid gap-6 lg:grid-cols-[1fr_0.75fr]">
+        <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6 sm:p-8">
+          <p className="text-lg leading-8 text-slate-200">
+            I am an Information Systems undergraduate at Universitas Airlangga
+            with experience in full-stack web development, project management,
+            and AI-assisted system development. My work has covered CRUD
+            operations, authentication, API integration, database modeling, and
+            deployment across Laravel/PHP, ReactJS, Golang, and PostgreSQL.
+          </p>
+          <p className="mt-5 text-lg leading-8 text-slate-300">
+            The through-line is delivery. I like building systems that solve a
+            visible workflow problem, then keeping the team aligned enough to
+            ship them. That means clarifying requirements, breaking work into
+            manageable tasks, coordinating stakeholders, and staying involved in
+            implementation details.
+          </p>
+        </article>
+
+        <aside className="grid gap-4">
+          <article className="rounded-lg border border-purple-300/20 bg-purple-950/35 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-purple-200">
+              Positioning
+            </p>
+            <p className="mt-4 text-2xl font-bold leading-tight text-white">
+              Full-stack developer, project manager, and AI-assisted system
+              builder.
+            </p>
+          </article>
+          <article className="rounded-lg border border-blue-300/20 bg-blue-950/25 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-200">
+              Education
+            </p>
+            <h3 className="mt-4 text-xl font-bold text-white">
+              {credentials.education.institution}
+            </h3>
+            <p className="mt-2 text-slate-300">{credentials.education.title}</p>
+            <p className="mt-1 text-slate-400">
+              {credentials.education.period} · {credentials.education.detail}
+            </p>
+          </article>
+        </aside>
+      </div>
+    </div>
   );
-});
+}
 
-AboutSection.displayName = 'AboutSection';
+function ExperienceTimeline() {
+  return (
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="Experience"
+        title="Professional contribution and organization-scale coordination."
+        description="The timeline separates software delivery work from organizational leadership, so the portfolio reads clearly to recruiters and clients."
+      />
 
-export default AboutSection;
+      <div className="grid gap-5">
+        {experiences.map((experience) => (
+          <article
+            key={`${experience.organization}-${experience.period}`}
+            className="grid gap-5 rounded-lg border border-white/10 bg-slate-950/40 p-6 lg:grid-cols-[0.32fr_1fr]"
+          >
+            <div>
+              <span className="rounded-md border border-purple-300/30 bg-purple-300/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-purple-100">
+                {experience.type}
+              </span>
+              <p className="mt-5 text-sm text-slate-400">{experience.period}</p>
+              <p className="mt-2 text-sm text-slate-500">{experience.location}</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">{experience.title}</h3>
+              <p className="mt-1 text-lg font-semibold text-blue-200">
+                {experience.organization}
+              </p>
+              <ul className="mt-5 grid gap-3">
+                {experience.points.map((point) => (
+                  <li key={point} className="flex gap-3 text-sm leading-6 text-slate-300">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CapabilityStack() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      {skillGroups.map((group) => {
+        const Icon = group.icon;
+        return (
+          <article
+            key={group.title}
+            className="rounded-lg border border-white/10 bg-white/[0.04] p-6"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-md bg-purple-300/10 text-purple-100">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3 className="text-xl font-bold text-white">{group.title}</h3>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md border border-white/10 bg-slate-950/45 px-3 py-2 text-sm text-slate-200"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function AboutSection({ variant }: AboutSectionProps) {
+  if (variant === "experience") {
+    return <ExperienceTimeline />;
+  }
+
+  if (variant === "capabilities") {
+    return <CapabilityStack />;
+  }
+
+  return <AboutStory />;
+}
